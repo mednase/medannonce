@@ -1,0 +1,262 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('test/css/comment.css') }}" xmlns="http://www.w3.org/1999/html"/>
+{% endblock %}
+
+{% block body %}
+<div class="container" style="padding-top: 5%">
+    <div class="box7 col col-md-8 " >
+        <h1 class="stitched">{{ annonce.titre }}</h1>
+        <h3 class="text-left" style="color: orangered;font-family: Georgia"> <span class="fa fa-map-marker"></span> {{ annonce.gouvernorat }}</h3>
+        {% if annonce.images|length >0 %}
+        <div class='slider '>
+            <div class='images' style="background-image: url({{asset(annonce.images.get(0).path) }})"></div>
+            <div class="hidde-sm hidden-xs grp">
+                {% for image in annonce.images %}
+                    {% set clase="slide-"~(loop.index)~" sl" %}
+            <input name="same"  class="{{ clase }}" type="radio" style="background-image: url('{{ asset(image.path) }}')"/>
+
+                {% endfor %}
+
+            </div>
+            <div class="col-lg-12 row control hidden-sm hidden-md hidden-lg center-block">
+                <img id="left" class=" col-sm-6 col-xs-6 text-left img-responsive" src="{{ asset('images/arrow-left.png') }}"/>
+                <img id="right" class="col-sm-6 col-xs-6 text-right img-responsive" src="{{ asset('images/arrow-right.png') }}"/>
+            </div>
+            </div>
+        {% endif %}
+        <p class="discription row" style="margin-top: 4%">
+            <i class="col-md-3 tdesp">Description  :</i><br>
+            <div class="col-md-8" id="discrep">{{ annonce.description }}</div>
+        </p>
+
+        {% if annonce.HasObject %}
+
+        <div class="col-lg-12 text-left" style="margin-top: 4%">
+            <i class="tdesp" >Caracteristique :</i><br>
+            {% set Path="@AnnonceMain/CaracObject/"~annonce.categorie.nom~".html.twig" %}
+            {% include Path %}
+        </div>
+        {% endif %}
+        <div class="col-lg-12 text-left" id="prixS" style="margin-top: 4%">
+            <i class="tdesp">Prix : </i><i style="color: black;font-size: 20px" >{{ annonce.prix }} <span class="fa fa-money " style="color: green"></span></i>
+        </div>
+
+    </div>
+    <div class="info-user col-md-3 col-md-offset-1 row">
+        <img class="img img-circle" width="100" height="100" src="{{ asset(annonce.user.profile.photo.path) }}">
+        <div style="margin-top: 2%;color: brown;font-weight: bold;font-size: 15px">- {{ annonce.user.username }} -<br>
+            - {{ annonce.user.profile.adresse }} -<br>
+        - {{ annonce.user.profile.gouvernorat }} -<br>
+        </div>
+
+        <button class="btn btn-success col-md-12" data-toggle="modal" data-target="#MessageModal" data-whatever="{{ annonce.user.username }}"><span class="fa fa-envelope-o fa-2x"></span> Envoyer Message </button>
+        <button class="btn btn-danger col-md-12 addFav" id="addFav"><span class="fa fa-heart-o fa-2x"></span> Ajout Favoris  </button>
+        <button class="btn btn-info col-md-12" data-toggle="modal" data-target="#TelModal"><span class="fa fa-phone fa-2x"></span> Afficher Numero </button>
+
+
+        <button class="btn btn-default btn-lg col-md-12"> <span class="fa fa-warning"></span> Signaler Annonce</button>
+    </div>
+</div>
+    <div class="container ">
+    <h1 class="comments-title text-left">Comment :</h1>
+    <div class="comments col-md-9 row">
+
+        {% if app.user %}
+        {{ form_start(form,{'methode':'post','action':path('View_annonce',{id:annonce.id})} )}}
+        <section class="commenter col-lg-12">
+            <div class=" block">
+                {% if app.user  %}
+                    {% set path_img = asset(app.user.profile.photo.path) %}
+                {% else %}
+                    {%  set path_img = asset("images/default-avatar.png") %}
+                {% endif %}
+                <img src="{{ path_img }}" class="img-responsive col-md-2 col-xs-2 hidden-xs">
+                {{ form_widget(form.contenu,{'attr':{'class':'col-md-8 col-xs-9 Tcomment center-block'}}) }}
+                <button type="submit" class="text-right btn btn-primary" id="commenter">
+                    Poster
+                </button>
+            </div>
+        </section>
+        {{ form_end(form) }}
+        {% endif %}
+        <section class="comment-list col-md-12 " style="margin-top: 2%">
+            {%  for comment in annonce.commentaires %}
+            <!-- First Comment -->
+            <article class="row">
+                <div class="col-md-2 col-sm-2 hidden-xs">
+                    <figure class="thumbnail">
+                        <img class="img-responsive" src="{{ asset(comment.user.profile.photo.path) }}" />
+                        <figcaption class="text-center">{{ comment.user.username }}</figcaption>
+                    </figure>
+                </div>
+                <div class="col-md-10 col-sm-10">
+                    <div class="panel panel-default arrow left">
+                        <div class="panel-body">
+                            <header class="text-left">
+                                <div class="comment-user"><i class="fa fa-user"></i>{{ comment.user.username }}</div>
+                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i>  {{ comment.dateCreation|date('d-M-Y') }}</time>
+                            </header>
+                            <div class="comment-post">
+                                <p class="text-left">
+                                    {{ comment.contenu }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </section>
+    </div>
+    </div>
+
+    <!-- modal Afficher Numero -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="TelModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: lightgray">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h2 class="modal-title"><span class="fa fa-phone"></span>    Numéro de téléphone: </h2>
+                </div>
+                <div class="modal-body">
+                    <h3>{{ annonce.user.profile.telephone }}</h3>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <!-- Modal Envoyer message -->
+    <div class="modal fade" id="MessageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="MessageModalLabel">Envoyer Message </h4>
+                </div>
+                <div class="modal-body">
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">Titre Message:</label>
+                            <input type="text" class="form-control" id="message-titre" value="{{ annonce.titre }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">Votre Message:</label>
+                            <textarea class="form-control" id="message-text" rows="3" style="resize: vertical"></textarea>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-success" id="envoiMessage">Envoyer Message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+
+        $('.sl').click(function(){
+            var url=$(this).css('backgroundImage');
+            $('.images').css('backgroundImage',url);
+        });
+
+        $('#left').click(function(){
+
+            var prev=$('.grp').find("input:radio:checked").prev();
+            if(prev.hasClass('sl'))
+            {
+                prev.click();
+                prev.attr('checked',true);
+            }
+
+        });
+
+        $('#right').click(function(){
+            var next=$('.grp').find("input:radio:checked").next();
+            if(next.hasClass('sl')){
+                next.click();
+            }
+        });
+
+        $('.addFav').unbind().click(function(){
+            {% if app.user %}
+
+            $.ajax({
+                type: "GET",
+                dataType: 'html',
+                data: {'num': {{ annonce.id}}},
+                url: "{{ url('add_Fav') }}",
+                success: function(reponse) {
+                    var res=reponse;
+                    $.notify(res, {
+                        animate: {
+                            enter: 'animated zoomInDown',
+                            exit: 'animated zoomOutUp'
+                        },
+                        offset:80
+                    });
+                }
+            });
+            {% else %}
+                $.notify("Vous devez Connecter", {
+                    animate: {
+                        enter: 'animated zoomInDown',
+                        exit: 'animated zoomOutUp'
+                    },   offset:80
+                });
+            {% endif %}
+
+        });
+
+        $('#MessageModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('#MessageModalLabel').text('Nouveau Message a ' + recipient);
+        });
+
+        $('#envoiMessage').unbind().click(function(){
+            var message=$('#message-text').val();
+            var titre=$('#message-titre').val();
+            $('#message-text').val("");
+            $('#MessageModal').modal("hide");
+            var notify;
+            {% if app.user %}
+            $.ajax({
+                type: "GET",
+                dataType: 'html',
+                data: {'id': {{ annonce.user.id}},'contenu':message,'titre':titre},
+                url: "{{ url('envoiMessage') }}",
+                beforeSend: function() {
+                    notify = $.notify('<strong>Envoi Message</strong> Envoi encours ne fermer pas cette page...', {
+                    allow_dismiss: false,
+                    showProgressbar: true
+                });
+                },
+                success: function(reponse) {
+                    notify.update({'type': 'success', 'message': '<strong>Success</strong> Votre Message a éte envoyer!', 'progress': 100});
+                },
+                fail: function(){
+                    notify.update({'type': 'error', 'message': '<strong>Erreur </strong> Echec d\'envoi !', 'progress': 100});
+                    $('#message-text').val(message);
+                }
+            });
+
+            {% else %}
+            $.notify("Vous devez Connecter", {
+                animate: {
+                    enter: 'animated zoomInDown',
+                    exit: 'animated zoomOutUp'
+                },   offset:80
+            });
+            {% endif %}
+
+        });
+    </script>
+{% endblock %}

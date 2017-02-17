@@ -1,0 +1,36 @@
+{% extends '::AdminBase.html.twig' %}
+
+{% block body %}
+    <div class="panel panel-green">
+        <div class="panel-heading">Liste Categorie</div>
+        <div class="panel-body">
+            <table class="table table-hover-color">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom De Categorie</th>
+                    <th>Option</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for category in categories %}
+                    <tr>
+                        <td>{{ category.id }}</a></td>
+                        <td>{{ category.nom }}</td>
+                        <td>
+                            <a href="{{ path('admin_categories_delete', { 'id': category.id }) }}"
+                               data-original-title="Supprimer Categorie" data-toggle="tooltip" type="submit"
+                               class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <ul style="list-style: none">
+        <li>
+            <a class="jplist-reset-btn btn btn-danger" href="{{ path('admin_categories_new') }}">Cree une Nouvelle categorie</a>
+        </li>
+    </ul>
+{% endblock %}

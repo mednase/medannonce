@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>{% block title %} M-H-Annonce {% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('test/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('test/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/map.css') }}">
+    <link rel="stylesheet" href="{{ asset('test/css/comment.css') }}">
+    <link rel="stylesheet" href="{{ asset('datepicker/css/datepicker.css') }}">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="{{ asset("test/css/gsdk-base.css") }}">
+    <link rel="stylesheet" href="{{ asset("assets/remarkable-bootstrap-notify/dist/notify.css") }}">
+    {% block stylesheets %}
+
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo-Annonce.png') }}"/>
+</head>
+<body>
+{% set username = "" %}
+{% set photo= "" %}
+<header>
+        <nav class="navbar navbar-inverse navbar-static-top" style="margin-bottom: 0px">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="{{ path('accueil') }}" class="icon-bar col-md-2"><img
+                                src="{{ asset('images/logo-Annonce.png') }}" id="logo" height="50dp"
+                                width="120"></a>
+                </div>
+                <div class="collapse navbar-collapse js" id="mainNavbar">
+                    <ul class="nav navbar-nav col-md-6 col-lg-6">
+                        <li><a class="nav-link" href="{{ path('accueil') }}"><span class="fa fa-home"></span> Accueil</a></li>
+                        <li><a class="nav-link" href="{{ path('get_zone',{zone:'Tunisie'}) }}"><span class="fa fa-street-view"></span> Les Annonce </a></li>
+                        <li><a class="nav-link btn btn-deposer" href="{{ path('med_annonce_depose') }}" style="color: white">Deposer une annonce</a></li>
+                    </ul>
+
+                    <div  class="col-lg-4 col-md-4" style="margin-left: -28px;">
+                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                        {% set username = app.user.username %}
+                        {% set photo = app.user.profile.photo.path %}
+                        <ul class="nav navbar-nav navbar-right " style="font-size:16px;">
+                            <li class="dropdown dropdown-messages navbar-link"><a data-hover="dropdown" href="{{ path('messages') }}" class="dropdown-toggle"><i class="fa fa-envelope fa-fw">
+                                    </i><span class="badge" style="background-color: green"></span></a>
+                                    <div id="MessageNotify"></div>
+                            </li>
+                            <li><a href="{{ path('fos_user_profile_show') }}"><span class="fa fa-heart nav-link" style="color: red"></span> Favoris</a></li>
+                            <li class=" dropdown nav-link">
+                                <a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">{{ app.user.username }} <span
+                                            class="caret"></span></a>
+                                <ul class="dropdown-menu" style="background: lightgrey;z-index: 500">
+                                    <li>
+                                        <div class="navbar-login">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <p class="text-center">
+                                                        <img src="{{ asset(app.user.profile.photo.path)}}" width="100" height="100">
+                                                    </p>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <p class="text-left" style="text-align: center">
+                                                        <strong>{{ app.user.username }}</strong></p>
+
+                                                    <p class="text-left small"
+                                                       style="text-align: center">{{ app.user.email }}</p>
+
+                                                    <p class="text-left">
+                                                        <a href="{{ path('fos_user_profile_show') }}"
+                                                           class="btn btn-primary btn-block btn-sm">Mon Profile</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <li>
+                                        <div class="navbar-login navbar-login-session">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p>
+                                                        <a href="{{ path('fos_user_security_logout') }}"
+                                                           class="btn btn-danger btn-block"><i
+                                                                    class=" glyphicon glyphicon-log-out"></i>
+                                                            Deconnection</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    {% else %}
+                        <ul class="nav navbar-nav pull-right" style="font-size: 16px;margin-right:0px" >
+                            <li class="nav-link"><a href="{{ path("fos_user_registration_register") }}"><span
+                                            class="glyphicon glyphicon-user"></span> S'inscrire</a></li>
+                            <li>
+                                <a  href="{{ path("fos_user_security_login") }}" role="button">
+                                    <span class="glyphicon glyphicon-log-in"></span>
+                                    connecter
+                                </a>
+                            </li>
+                        </ul>
+
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+</header>
+<div class="contenaire">
+{% block body %}
+{% endblock %}
+</div>
+<footer>
+    <div class="footer col-md-12" id="footer" style="width: 100%;margin-right: 20px;">
+        <div class="container-fluid">
+            <div class="row">
+                <ul>
+                    <li class="col-md-3">
+                        <p class="home tag">Info</p>
+                        <ul>
+                            <a class="logo" href="#">Ma Societé <i>&copy; 2016</i></a>
+                            <i><span class="fa fa-phone"/>   Phone : <span style="color: #f4f3f6;">55 361 502</span></i><br><br>
+                            <i><span class="fa fa-location-arrow"/>  Adresse : <span style="color: #f4f3f6">Rue Andalousse Sayada</span></i><br><br>
+                            <i><span class="fa fa-envelope"/>  Email : <span style="color: #f4f3f6">Mednaceur-marzouk@hotmail.fr</span></i>
+                        </ul>
+                    </li>
+                    <li class=" col-md-3">
+                        <p class="services tag">Navigation</p>
+                        <ul>
+                            <li><a href="#">Recherche</a></li>
+                            {{ render(controller('AnnonceMainBundle:Categories:categorie',{type:'1'})) }}
+                        </ul>
+                    </li>
+                    <li class=" col-md-4" style="margin-bottom: 20px">
+                        <p class="reachus tag">Nous Contacter</p>
+                        <button class="btn btn-info" data-toggle="modal" data-target="#myModal"><span class="fa fa-send"/>  Envoyer Message</button>
+                        <ul class="social" >
+                            <li><a href="#"> <i class=" fa fa-facebook">  </i> </a></li>
+                            <li><a href="#"> <i class="fa fa-twitter"> </i> </a></li>
+                            <li><a href="#"> <i class="fa fa-google-plus">  </i> </a></li>
+                            <li><a href="#"> <i class="fa fa-pinterest"> </i> </a></li>
+                            <li><a href="#"> <i class="fa fa-youtube">  </i> </a></li>
+                        </ul>
+                    </li>
+                    <li class=" col-md-2 col-xs-12">
+                        <p class="clients tag">Clients</p>
+                        <ul>
+                            <li><a href="{{ path('fos_user_security_login') }}">Connection</a></li>
+                            <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+                            <li><a href="#">Support</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <!--/.row-->
+    </div>
+    <!--/.container-->
+    </div>
+    <!--/.footer-->
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="pull-left col-xs-12 col-md-8"> Copyright © Mednaceur Company 2016. All right reserved. </p>
+        </div>
+    </div>
+
+
+
+</footer>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 form-box  col-md-12">
+                <div class="form-top">
+                    <div class="form-top-left">
+                        <h3>Nous Contacter</h3>
+
+                        <p>Rempli Ce Formulaire Pour Nous Envoyer Un message:</p>
+                    </div>
+                    <div class="form-top-right">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                </div>
+                <div class="form-bottom contact-form">
+                    <form role="form" action="assets/contact.php" method="post">
+                        <div class="form-group">
+                            <label class="sr-only" for="contact-email">Email</label>
+                            <input type="text" name="email" placeholder="Email..."
+                                   class="contact-email form-control" id="contact-email">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="contact-subject">Subject</label>
+                            <input type="text" name="subject" placeholder="Sujet..."
+                                   class="contact-subject form-control" id="contact-subject">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="contact-message">Message</label>
+                                <textarea name="message" placeholder="Message..." class="contact-message form-control"
+                                          id="contact-message"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Envoyer message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+<script src="{{ asset("test/JS/jquery-1.10.2.min.js") }}"></script>
+<script src="{{ asset('datepicker/js/bootstrap-datepicker.js') }}"></script>
+<script src="{{ asset('js/Myscript.js') }}"></script>
+<script src="{{ asset("assets/remarkable-bootstrap-notify/dist/bootstrap-notify.js") }}"></script>
+<script src="{{ asset("assets/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js") }}"></script>
+<script src="{{ asset('assets/jquery-validation/dist/jquery.validate.js') }}"></script>
+<script src="{{ asset('js/js.cookie.js') }}"></script>
+<script>
+    $('.datepicker').datepicker();
+
+    $(document).scroll(function(e){
+        var scrollTop = $(document).scrollTop();
+        if(scrollTop > 0){
+            console.log(scrollTop);
+            $('.navbar').removeClass('navbar-static-top').addClass('navbar-fixed-top');
+        } else {
+            $('.navbar').removeClass('navbar-fixed-top').addClass('navbar-static-top');
+        }
+    });
+
+    {% if app.user %}
+
+    doLoop();
+
+    var timeout = 4000;
+
+    function doLoop() {
+        $.ajax ({
+            method:'GET',
+            url:"{{ path('notifyMessage') }}",
+            dataType:'json',
+            success: function(reponse){
+                $("#MessageNotify").html(reponse.html);
+                $(".badge").html(reponse.nbr);
+
+            }
+        }).done(function(data) {
+            setTimeout(doLoop, timeout);
+        });
+    }
+
+
+
+
+    if(window.location.href=="{{ url('accueil') }}" && !Cookies.get('connecté')){
+         Cookies.set('connecté',true);
+         $.notify({
+            icon:'{{ photo }}',
+            title: 'Vous éte connecté',
+            message: 'Bonjour {{ username}}',
+        },{
+            align: 'right',
+            offset:80,
+             z_index:5,
+            type: 'minimalist',
+            delay: 5000,
+            icon_type: 'image',
+            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0} " role="alert">' +
+            '<img data-notify="icon" class="img-circle pull-left" >' +
+            '<span data-notify="title">{1}</span>' +
+            '<span data-notify="message">{2}</span>' +
+            '</div>'
+        });
+     }
+    {% endif %}
+
+</script>
+
+<style>
+    .CateT{
+        text-align: center;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        background-color: #95a8ba;
+    }
+</style>
+{% block javascripts %}
+{% endblock %}
+</html>

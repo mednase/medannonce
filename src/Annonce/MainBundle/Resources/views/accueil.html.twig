@@ -1,0 +1,298 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<div class="contenaire2"><
+    <div id="page-wrap">
+   <div class="breadcrumb-wrap mbl">
+            <div class="container relative text-left">
+                <ul class="breadcrumb" id="breadcrumb_li">
+                    <li><a href="{{ path('accueil') }}"><i
+                                    class="fa fa-home fa-2x"></i></a><span></span></li>
+
+                    <li>
+                        <a href="{{ route2 }}">{{ path2|upper }}</a><span></span>
+                    </li>
+
+                    {% if route is defined %}
+                        <li class="active">
+                            <a href="{{ route }}">{{ path|upper }}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+   <div class="row">
+        <div class="col-md-3">
+            <div class="listGouv col-md-12">
+                <div class="listGouv titre">
+                    Gouvernorat
+                </div>
+
+                <div class="col-md-7 text-left">
+                    <a href="{{ path('get_zone',{zone:'Tunisie'}) }}" class="active" style="margin-left: -10px"> Tunisie </a><br>
+                    <div style="margin-left: 30px">
+                        {% for i in 1..5 %}
+                            <a href="{{ path('get_zone',{zone:zones[i]}) }}">  {{ zones[i] }}</a><br>
+                        {% endfor %}
+                        <a id="Plus" href="#" style="color: #f50000">Plus .....</a>
+                    </div>
+
+                </div>
+                <img class="col-md-4" src="{{ asset('images/tunisie.gif') }}">
+            </div>
+            <div class="col-md-12">
+                <div class="list-group searchbox-categories">
+                    <a class="list-group-item title" href="#">Tous Les Categories</a>
+                    <div class="it">
+                        <a  href="#">
+                            <i class="category_veihcule"></i>&nbsp; Vehicule <span > <i class="text-right fa fa-angle-right"></i></span>
+                         </a>
+                        <ul class = "CategorieSubMenu">
+                            <li ><a href = "{{ path('get_categorie',{zone:path2,categorie:"voiture"}) }}"> Voiture</a></li>
+                            <li ><a href = "{{ path('get_categorie',{zone:path2,categorie:"moto"}) }}"> Moto</a></li>
+                            <li ><a href = "{{ path('get_categorie',{zone:path2,categorie:"camion"}) }}"> Camion</a></li>
+                            <li ><a href="{{ path('get_categorie',{zone:path2,categorie:"Bateau"}) }}"> Bateau</a></li>
+                        </ul>
+                    </div>
+                    <div  class="it">
+                        <a  href="#">
+                            <i class="category_immoblier"></i>&nbsp; Immobilier <span > <i class="text-right fa fa-angle-right "></i></span>
+                        </a>
+                        <ul class="CategorieSubMenu">
+                            <li ><a href = "{{ path('get_categorie',{zone:path2,categorie:"appartement"}) }}"> Appartement</a></li>
+                            <li ><a href = "{{ path('get_categorie',{zone:path2,categorie:"maison"}) }}"> Maison</a></li>
+                            <li ><a href = "{{ path('get_categorie',{zone:path2,categorie:"bureaux"}) }}"> Bureau</a></li>
+                            <li ><a href="{{ path('get_categorie',{zone:path2,categorie:"terrains"}) }}"> Terrain</a></li>
+                        </ul>
+                    </div>
+                    <div  class="it">
+                        <a  href="#">
+                            <i class="category_multimedia"></i>&nbsp; Multimedia <span > <i class="text-right fa fa-angle-right "></i></span>
+                        </a>
+                        <ul class="CategorieSubMenu">
+                            <li ><a href = "{{ path('get_categorie',{zone:path2,categorie:"telephone"}) }}"> Telephonie</a></li>
+                            <li ><a href = "{{ path('get_categorie',{zone:path2,categorie:"informatique"}) }}"> Informatique</a></li>
+                            <li ><a href = "{{ path('get_categorie',{zone:path2,categorie:"image_son"}) }}"> Image & Son</a></li>
+                            <li ><a href="{{ path('get_categorie',{zone:path2,categorie:"console"}) }}"> Console & Jeux</a></li>
+                        </ul>
+                    </div>
+                    <div  class="it">
+                        <a  href="#">
+                            <i class="category_loisirs"></i>&nbsp; Loisir <span > <i class="text-right fa fa-angle-right "></i></span>
+                        </a>
+                        <ul class="CategorieSubMenu">
+                            <li ><a href = "{{ path('get_categorie',{zone:path2,categorie:"livres"}) }}"> Livres</a></li>
+                            <li ><a href = "{{ path('get_categorie',{zone:path2,categorie:"velos"}) }}"> Vélos</a></li>
+                            <li ><a href = "{{ path('get_categorie',{zone:path2,categorie:"animeaux"}) }}"> Animeaux</a></li>
+                            <li ><a href="{{ path('get_categorie',{zone:path2,categorie:"jouet"}) }}"> Jeux & Jouets</a></li>
+                        </ul>
+                    </div>
+                    <div  class="it">
+                        <a  href="#">
+                            <i class="category_service"></i>&nbsp; Service <span > <i class="text-right fa fa-angle-right "></i></span>
+                        </a>
+                        <ul class="CategorieSubMenu">
+                            <li ><a href = "{{ path('get_categorie',{zone:path2,categorie:"Offre_emploi"}) }}"> Offre d'emploi</a></li>
+                            <li ><a href = "{{ path('get_categorie',{zone:path2,categorie:"Demande_emploi"}) }}"> Demande d'emploi</a></li>
+                            <li ><a href = "{{ path('get_categorie',{zone:path2,categorie:"affaire"}) }}"> Affaire</a></li>
+                            <li ><a href="{{ path('get_categorie',{zone:path2,categorie:"service"}) }}"> Service</a></li>
+                        </ul>
+                    </div>
+                    <a  href="#"><i class="fa" aria-hidden="true"></i>&nbsp; Autres</a>
+
+            </div>
+        </div>
+        </div>
+        <div class=" col-md-9">
+            <div id="tab-general">
+                <div class="row mbl">
+                    <div class="col-lg-12">
+
+                        <div class="col-md-12">
+                            <div id="area-chart-spline" style="width: 100%; height: 300px; display: none;">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-12">
+                        <form name="fRech" class="form-wrapper cf col-md-12" method="get" action="{{ path('get_categorie',{zone:path2,categorie:"all"}) }}">
+                            <div class="left-inner-addon ">
+                                <i class="fa fa-search ">  </i>
+                            <input name="rech" class="col-md-7 " type="text" placeholder="Que Chercher Vous ..." required></div>
+                            <button class="col-md-2" type="submit">Recherche</button>
+                        </form>
+                        <div class="page-content">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="panel">
+                                        <div class="panel-body">
+                                            <div id="grid-layout-table-1" class="box jplist">
+                                                <div class="box text-shadow">
+                                                        {% for annonce in annonces %}
+
+                                                        <div class="thumb row itemAnnonce"  data-href='{{ path('View_annonce',{id:annonce.id}) }}'>
+                                                        <div class="media col-md-3 ">
+                                                            <figure class="pull-left">
+                                                                 {%  if annonce.images|length <1%}
+                                                                {% set pathimg= asset('images/default-img-annonce.png') %}
+                                                                {% else %}
+                                                                    {% set pathimg= asset(annonce.images.get(0).path) %}
+                                                                    {% endif %}
+                                                                <img class=" "  src="{{ pathimg }}"  width="200px" height="150px">
+                                                            </figure>
+                                                        </div>
+                                                            <div class="col-md-9">
+                                                                <h4 class="titre text-left col-md-8"> {{ annonce.titre }} </h4>
+                                                                <time style="font-size: 18px;" class="comment-date col-md-4" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i>
+                                                                    {% if date(annonce.dateAjout) > date('') %}
+                                                                       Aujourdhui {{ annonce.dateAjout|date('H:i') }}
+                                                                    {% elseif date(annonce.dateAjout) > date('-1days') %}
+                                                                        Hier {{ annonce.dateAjout|date('H:i') }}
+                                                                    {% else %}
+                                                                        {{ annonce.dateAjout|date('d-M:H:i') }}
+                                                                    {% endif %}
+                                                                </time>
+                                                                <p class=" text-left col-md-10" style="margin-top: 1%">
+                                                                    {{ annonce.description[:100]~' ...' }}
+                                                                </p>
+                                                                <p class="col-md-2" style="color: orangered;font-size: 22px;font-weight: bold">
+                                                                    {{ annonce.prix }} $
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        {% endfor %}
+                                                        {% if annonces|length ==0 %}
+                                                            <h1 class="text-warning">Nous sommes désolés!&nbsp;Nous n’avons trouvé aucun résultat.</h1>
+                                                        {% endif %}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    <div id="modal" class="col-md-12">
+        <h1>Choisir Votre Gouvernorat</h1>
+        {% for zone in zones %}
+            <ul style="list-style: none">
+            <li><a class="col-md-3" style="font-weight: bold;font-size: 18px" href="{{ path('get_zone',{zone:zone}) }}">  {{ zone }}</a></li>
+            </ul>
+                {% endfor %}
+        <button class="col-md-10 btn btn-danger center-block" id="annuler" style="margin: 5%"><span class="fa fa-times"></span> Fermer</button>
+    </div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('test/JS/jplist.js') }}"></script>
+    <script>
+        $('.it').on('mouseover',function(){
+            $(this).find("ul").css("visibility","visible");
+            $(this).find("ul").css("top",$(this).css("top"));
+            $(this).css("background-color","whitesmoke");
+
+        });
+        $('.it').on('mouseout',function(){
+            $(this).css("background-color","white");
+            $(this).find("ul").css("visibility","hidden");
+        });
+        $("#Plus").on("click", function () {
+            // State changes
+            $(".contenaire2").toggleClass("dialogIsOpen");
+
+        });
+        $('#annuler').click(function () {
+            $('.contenaire2').removeClass("dialogIsOpen");
+        });
+
+    </script>
+{% endblock %}
+{% block stylesheets %}
+    <style>
+
+        .listGouv {
+            /* Size and position */
+            position: relative; /* Enable absolute positioning for children and pseudo elements */
+
+            /* Styles */
+            background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(rgba(195, 248, 255, 0.88)), to(#7ecbff), color-stop(.1, #c3f8ff));
+            border-top: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+            -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+            color: #fff;
+            outline: none;
+            /* Font settings */
+            font-weight: bold;
+            margin-bottom: 10%;
+            padding-bottom: 5%;
+        }
+
+        .listGouv.titre {
+            background-color: skyblue;
+            font-size: 22px;
+            color: #8489ff;
+            font-weight: bold;
+            padding: 3%;
+            font-family: Georgia, "Times New Roman", Times, serif
+        }
+
+        .listGouv a {
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: pink;
+            font-size: 22px;
+        }
+
+        .breadcrumb li {
+            font-weight: bold;
+        }
+
+        .left-inner-addon {
+            position: relative;
+        }
+        .left-inner-addon input {
+            padding-left: 30px;
+        }
+        .left-inner-addon i {
+            position: absolute;
+            padding: 10px 12px;
+            pointer-events: none;
+        }
+
+        .right-inner-addon {
+            position: relative;
+        }
+        .right-inner-addon input {
+            padding-right: 30px;
+        }
+        .right-inner-addon i {
+            position: absolute;
+            right: 0px;
+            padding: 10px 12px;
+            pointer-events: none;
+        }
+
+
+    </style>
+    <link rel="stylesheet" href="{{ asset('test/css/dropdown/style4.css') }}">
+    <link rel="stylesheet" href="{{ asset('test/css/jplist-custom.css') }}">
+{% endblock %}

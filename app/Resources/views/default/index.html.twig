@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+{% block carousel %}
+{% endblock %}
+{% block body %}
+<div class="maincontent">
+    <div class="thumb-box1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-7 col-sm-12">
+                    <p class="textpub">
+                        La meuilleur Place<br>
+                        <strong>Pour Trouver Ce que Vous Chercher</strong>
+                    </p>
+                    </br>
+                    <a href="{{ path("fos_user_registration_register") }}" class="btn btn-default btn2"> Inscription </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+    <div class="center-block button_box2 col-md-8 " style="float: none; ">
+                {{ render(controller("AnnonceMainBundle:Default:recherche")) }}
+    </div>
+    <div class="block">
+    <div class="center-block container row" style="margin-top: 2%">
+            <div class="map col-md-5 col-sm-5 col-xs-12 center-block" >
+                <img src="{{ asset("assets/void.png") }}" width="300" height="450" usemap="Map2">
+                <map name="Map2">
+                    <area shape="poly" coords="170,251,163,244,156,238,156,230,148,225,143,210,144,198,145,193,157,193,165,197,171,199,179,200,179,212,186,221,195,231,203,233,193,243,181,249" href="{{ path('get_zone',{zone:'Gabès'}) }}">
+                    <area shape="poly" coords="157,430,136,337,136,327,94,299,124,286,131,288,145,286,166,278,180,286,180,267,190,261,218,252,235,261,240,270,243,288,250,298,244,301,241,313,224,322,211,331,206,343,197,345,186,358,192,383,193,396,174,424" href="{{ path('get_zone',{zone:'Tataouine'}) }}">
+                    <area shape="poly" coords="242,311,257,306,258,298,255,292,254,280,255,270,253,261,238,258,237,251,236,237,230,233,231,223,219,218,215,227,210,229,207,233,202,235,195,242,184,246,173,253,172,251,178,253,176,259,181,265,177,263,186,261,191,259,198,257,213,252,225,255,236,261,239,269,243,275,245,283,247,292,246,302" href="{{ path('get_zone',{zone:'mednine'}) }}">
+
+                    <area shape="poly" coords="95,297,93,281,85,267,73,262,67,259,67,240,102,216,112,203,123,202,131,197,143,195,142,209,147,220,150,227,154,232,156,240,164,248,171,255,175,258,178,267,178,278,177,285,166,278,139,288,121,285,104,296" href="{{ path('get_zone',{zone:'Kébili'}) }}">
+                    <area shape="poly" coords="65,243,54,223,57,207,64,199,70,196,71,189,79,184,83,191,90,197,99,201,111,202,106,212,84,228" href="{{ path('get_zone',{zone:'Tozeur'}) }}">
+                    <area shape="poly" coords="78,184,90,176,93,169,93,164,103,169,108,165,119,164,125,157,130,157,128,163,130,167,143,169,144,178,149,177,157,184,157,192,141,195,126,200,116,203,104,201,92,198" href="{{ path('get_zone',{zone:'Gafsa'}) }}">
+                    <area shape="poly" coords="182,198,191,187,195,187,208,177,223,160,227,173,237,172,244,165,224,154,231,145,230,140,225,135,220,132,206,134,196,140,189,139,181,146,174,161,172,169,180,172,181,178,171,185,165,186,168,192,162,194,174,199,166,198" href="{{ path('get_zone',{zone:'Sfax'}) }}">
+                    <area shape="poly" coords="166,191,159,194,158,186,148,175,144,179,144,168,130,166,131,151,141,142,134,133,138,129,146,122,149,119,156,128,165,138,176,144,178,148,176,156,172,167,177,173,180,178" href="{{ path('get_zone',{zone:'Sidi Bouzid'}) }}">
+
+                    <area shape="poly" coords="90,160,95,153,98,143,100,139,94,131,95,120,95,108,103,108,108,113,111,103,114,99,122,104,129,108,138,112,147,118,141,126,132,134,141,141,131,150,129,155,122,160,116,164,103,167,98,165" href="{{ path('get_zone',{zone:'Kasserine'}) }}">
+                    <area shape="poly" coords="178,144,168,138,154,125,154,115,146,106,151,102,155,99,154,91,163,85,166,83,167,84,172,84,182,84,187,82,190,87,187,99,192,110,190,123,190,136,185,143" href="{{ path('get_zone',{zone:'Kairouan'}) }}">
+                    <area shape="poly" coords="153,61,149,64,148,64,138,66,130,63,125,65,128,70,130,78,136,82,136,89,132,94,130,98,132,109,140,112,150,119,154,114,149,112,146,105,153,99,153,94,154,88,161,87,167,82,166,77,161,77,157,72,165,68,165,64,159,63" href="{{ path('get_zone',{zone:'Siliana'}) }}">
+                    <area shape="poly" coords="93,108,92,94,95,82,97,71,102,65,110,64,122,62,124,65,126,71,129,79,132,81,134,87,129,96,130,105,118,98,112,95,109,105,109,110,101,104" href="{{ path('get_zone',{zone:'Le Kef'}) }}">
+                    <area shape="poly" coords="193,138,192,125,195,114,202,115,204,119,218,119,233,115,232,123,232,135,236,138,231,144,223,136,220,130,206,135,200,138" href="{{ path('get_zone',{zone:'Mahdia'}) }}">
+                    <area shape="poly" coords="212,104,205,112,202,113,204,116,213,117,224,117,234,114,226,111,220,109,220,105,215,104" href="{{ path('get_zone',{zone:'Monastir'}) }}">
+                    <area shape="poly" coords="195,111,188,98,191,86,186,80,193,76,201,68,204,68,202,84,206,91,212,100,212,105,203,112" href="{{ path('get_zone',{zone:'Sousse'}) }}">
+                    <area shape="poly" coords="177,51,168,59,167,65,164,71,161,73,162,76,166,77,169,80,169,83,177,82,185,82,189,77,196,72,194,67,193,63,186,57,181,56" href="{{ path('get_zone',{zone:'Zaghouan'}) }}">
+                    <area shape="poly" coords="207,67,217,65,221,56,228,43,235,38,231,25,224,27,216,35,210,36,204,43,198,46,197,59,194,65,197,70" href="{{ path('get_zone',{zone:'Nabeul'}) }}">
+                    <area shape="poly" coords="198,47,193,45,193,43,189,46,183,48,181,49,178,50,180,55,183,55,188,57,192,63,195,62,196,55" href="{{ path('get_zone',{zone:'Ben Arous'}) }}">
+                    <area shape="poly" coords="95,66,97,64,85,62,98,55,102,50,102,44,108,42,114,40,112,34,117,33,123,30,128,35,123,40,129,43,132,51,132,59,128,62,116,63,106,63" href="{{ path('get_zone',{zone:'Jendouba'}) }}">
+                    <area shape="poly" coords="126,31,130,24,132,29,138,29,143,35,145,38,146,43,153,46,154,39,163,43,168,46,169,52,168,57,162,62,154,61,147,63,136,65,133,59,132,48,125,41,129,37" href="{{ path('get_zone',{zone:'Béja'}) }}">
+                    <area shape="poly" coords="130,22,139,18,148,15,164,7,171,9,174,14,183,15,191,19,187,21,183,25,178,32,174,33,168,31,163,35,154,38,151,42,146,40,144,32,136,29,130,26" href="{{ path('get_zone',{zone:'Bizerte'}) }}">
+                    <area shape="poly" coords="188,24,181,31,177,34,180,37,181,42,189,38,195,35,190,33,188,29" href="{{ path('get_zone',{zone:'Ariana'}) }}">
+                    <area shape="poly" coords="182,42,183,49,189,47,189,44,189,41,196,38,195,35,186,40" href="{{ path('get_zone',{zone:'Tunis'}) }}">
+                    <area shape="poly" coords="176,33,171,32,163,37,157,39,160,41,165,41,169,46,170,53,176,51,180,48,180,42" href="{{ path('get_zone',{zone:'Manouba'}) }}">
+                </map>
+            </div>
+            <div class="col-md-7 col-sm-7 col-xs-12">
+                <h1>Trouver ce que vous chercher près de chez vous!</h1>
+                <table class="table" style="table-layout: auto">
+                    <tbody>
+                    <tr>
+                        <td><a href="{{ path('get_zone',{zone:'Tunis'}) }}">Tunis</a></td><td><a href="{{ path('get_zone',{zone:'Gafsa'}) }}">Gafsa</a></td><td><a href="{{ path('get_zone',{zone:'Mahdia'}) }}">Mahdia</a></td><td><a href="{{ path('get_zone',{zone:'Sidi Bouzid'}) }}">Sidi Bouzid</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="{{ path('get_zone',{zone:'Ariana'}) }}">Ariana</a></td><td><a href="{{ path('get_zone',{zone:'Jendouba'}) }}">Jendouba</a></td><td><a href="{{ path('get_zone',{zone:'La Manouba'}) }}">La Manouba</a></td><td><a href="{{ path('get_zone',{zone:'Siliana'}) }}">Siliana</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="{{ path('get_zone',{zone:'Béja'}) }}">Béja</a></td><td><a href="{{ path('get_zone',{zone:'Kairouan'}) }}">Kairouan</a></td><td><a href="{{ path('get_zone',{zone:'Medenine'}) }}">Médenine</a></td><td><a href="{{ path('get_zone',{zone:'Sousse'}) }}">Sousse</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="{{ path('get_zone',{zone:'Ben Arous'}) }}">Ben Arous</a></td><td><a href="{{ path('get_zone',{zone:'Kasserine'}) }}">Kasserine</a></td><td><a href="{{ path('get_zone',{zone:'Monastir'}) }}">Monastir</a></td><td><a href="{{ path('get_zone',{zone:'Tataouine'}) }}">Tataouine</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="{{ path('get_zone',{zone:'Bizerte'}) }}">Bizerte</a></td><td><a href="{{ path('get_zone',{zone:'Kébili'}) }}">Kébili</a></td><td><a href="{{ path('get_zone',{zone:'Nabeul'}) }}">Nabeul</a></td><td><a href="{{ path('get_zone',{zone:'Tozeur'}) }}">Tozeur</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="{{ path('get_zone',{zone:'Gabès'}) }}">Gabès</a></td><td><a href="{{ path('get_zone',{zone:'Le Kef'}) }}">Le Kef</a></td><td><a href="{{ path('get_zone',{zone:'Sfax'}) }}">Sfax</a></td><td><a href="{{ path('get_zone',{zone:'Zaghouan'}) }}">Zaghouan</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+    </div>
+    <section class="block info">
+    <div class=" center-block info-container">
+        <div class="row info-row">
+        <div class="col-lg-4 col-md-4 col-sm-4 item-info"><Strong >21546</Strong><br>Nombre De Visiteur</div>
+        <div class="col-lg-4 col-md-4 col-sm-4 item-info"><Strong >92354</Strong><br>Nombre d abonnées</div>
+        <div class="col-lg-4 col-md-4 col-sm-4 item-info"><Strong >10005</Strong><br>Nombre d annonce</div>
+        </div>
+    </div>
+
+    </section>
+{% endblock %}

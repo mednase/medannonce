@@ -1,0 +1,77 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <div class="block ">
+        <div class="row  center-block" style="padding: 10% ">
+            <div class="col-md-8 col-sm-offset-2 col-md-offset-2">
+                <form action="{{ path("fos_user_security_check") }}" method="post">
+                    <fieldset>
+                        <span class="fa fa-lock fa-3x" style="color: rgba(85, 111, 255, 0.68)">       <Strong>Connection</Strong></span>
+                        <hr class="colorgraph">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                        <div class="form-group">
+                            <input type="text" name="_username" id="username" class="form-control input-lg" placeholder="{{ 'security.login.username'|trans }}" value="{{ last_username }}" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="_password" id="password" class="form-control input-lg" placeholder="{{ 'security.login.password'|trans }}" required="required">
+                        </div>
+				<span class="button-checkbox">
+					<button type="button" class="btn" data-color="info">  {{ 'security.login.remember_me'|trans }}</button>
+                    <input type="checkbox" name="_remember_me" id="remember_me" checked="checked" class="hidden" value="on">
+				</span>
+                        <a href="{{ path("fos_user_resetting_request")  }}" class="btn btn-link pull-right">Mot de passe oublié?</a>
+                        <hr class="colorgraph">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <input type="submit" class="btn btn-lg btn-success btn-block" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" >
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <a href="{{ path("fos_user_registration_register") }}" class="btn btn-lg btn-primary btn-block">Inscription</a>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="social-login col-md-12">
+                <h3 id="testous" >...oubien Connecter avec:</h3>
+                <div class="social-login-buttons">
+                    <a class="btn btn-link-2" href="#">
+                        <i class="fa fa-facebook"></i> Facebook
+                    </a>
+                    <a class="btn btn-link-2" href="#">
+                        <i class="fa fa-twitter"></i> Twitter
+                    </a>
+                    <a class="btn btn-link-2" href="#">
+                        <i class="fa fa-google-plus"></i> Google Plus
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock fos_user_content %}
+{% block js %}
+    <script>
+
+        {% if error %}
+        $.notify({
+            title: '<strong>Erreur : </strong>',
+            message: "Nom utilisateur ou mot de passe Incorrect"
+        },{
+            placement: {
+                from: "top",
+                align: 'center'
+            },animate: {
+                enter: 'animated fadeInDown',
+                exit: 'animated fadeOutUp'
+            },
+            delay: 5000,
+            offset:80,
+            align: 'center',
+            type: 'danger'
+        });
+        {% endif %}
+    </script>
+
+{% endblock %}

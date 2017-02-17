@@ -1,0 +1,36 @@
+
+{{ form_start(formM) }}
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Marque :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formM.Marque,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Cylindre :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formM.Cylindre,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Anneé :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formM.Annee,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Kilometrage :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formM.Kilometrage,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+
+    {{ form_end(formM) }}

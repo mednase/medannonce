@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>{% block title %} M-H-Annonce {% endblock %}</title>
+    {% block stylesheets %}
+        <link type="text/css" rel="stylesheet"
+              href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700">
+        <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300">
+        <link rel="stylesheet" href="{{ asset('test/css/jquery-ui-1.10.4.custom.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('test/font-awesome/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('test/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('test/css/animate.css') }}">
+        <link rel="stylesheet" href="{{ asset('test/css/all.css') }}">
+        <link rel="stylesheet" href="{{ asset('test/css/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('test/css/style-responsive.css') }}">
+        <link rel="stylesheet" href="{{ asset('test/css/zabuto_calendar.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('test/css/pace.css') }}">
+        <link rel="stylesheet" href="{{ asset('test/css/jquery.news-ticker.css') }}">
+
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/MedService.png') }}"/>
+</head>
+<body>
+<!--BEGIN BACK TO TOP-->
+<a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
+<!--END BACK TO TOP-->
+<!--BEGIN TOPBAR-->
+<div id="header-topbar-option-demo" class="page-header-topbar">
+    <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3"
+         class="navbar navbar-default navbar-static-top">
+        <div class="navbar-header">
+            <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span
+                        class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+                        class="icon-bar"></span><span class="icon-bar"></span></button>
+            <a id="logo" href="{{ path('admin_categories_index') }}" class="navbar-brand"><span class="fa fa-rocket"></span><span
+                        class="logo-text">M-H-Annonce</span><span style="display: none"
+                                                                 class="logo-text-icon">µ</span></a></div>
+        <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
+
+            <form id="topbar-search" action="" method="" class="hidden-sm hidden-xs">
+                <div class="input-icon right text-white"><a href="#"><i class="fa fa-search"></i></a><input type="text"
+                                                                                                            placeholder="Search here..."
+                                                                                                            class="form-control text-white"/>
+                </div>
+            </form>
+            <div class="news-update-box hidden-xs"><span class="text-uppercase mrm pull-left text-white">News:</span>
+                <ul id="news-update" class="ticker list-unstyled">
+                    <li class="text-white">- Bienvenu a M-H-Annonce -</li>
+                </ul>
+            </div>
+            <ul class="nav navbar navbar-top-links navbar-right mbn">
+                <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
+                                class="fa fa-bell fa-fw"></i><span class="badge badge-green">3</span></a>
+
+                </li>
+                <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
+                                class="fa fa-envelope fa-fw"></i><span class="badge badge-orange">7</span></a>
+
+                </li>
+                <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
+                                class="fa fa-tasks fa-fw"></i><span class="badge badge-yellow">8</span></a>
+
+                </li>
+                <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img
+                                src="{{ asset(app.user.profile.photo.path) }}" alt=""
+                                class="img-responsive img-circle"/>&nbsp;<span
+                                class="hidden-xs">{{ app.user.username }}</span>&nbsp;<span class="caret"></span></a>
+                    <ul class="dropdown-menu dropdown-user pull-right">
+                        <li><a href="{{ path("fos_user_profile_show") }}"><i class="fa fa-user"></i>Mon Profile</a></li>
+                        <li><a href="#"><i class="fa fa-calendar"></i>Mon Calendrier</a></li>
+                        <li><a href="#"><i class="fa fa-envelope"></i>Mes Messages<span
+                                        class="badge badge-danger">3</span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-lock"></i>Lock Screen</a></li>
+                        <li><a href="{{ path("fos_user_security_logout") }}"><i class="fa fa-key"></i>Deconnexion</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="topbar-chat" class="hidden-xs"><a href="javascript:void(0)" data-step="4"
+                                                          data-intro="&lt;b&gt;Form chat&lt;/b&gt; keep you connecting with other coworker"
+                                                          data-position="left" class="btn-chat"><i
+                                class="fa fa-comments"></i><span class="badge badge-info">3</span></a></li>
+            </ul>
+        </div>
+    </nav>
+    <!--BEGIN MODAL CONFIG PORTLET-->
+    <div id="modal-config" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
+                        &times;</button>
+                    <h4 class="modal-title">
+                        Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        aaaaaa ipsum dolor sit amet, consectetur adipiscing elit. Sed eleifend et nisl eget
+                        porta. Curabitur elementum sem molestie nisl varius, eget tempus odio molestie.
+                        Nunc vehicula sem arcu, eu pulvinar neque cursus ac. Aliquam ultricies lobortis
+                        magna et aliquam. Vestibulum egestas eu urna sed ultricies. Nullam pulvinar dolor
+                        vitae quam dictum condimentum. Integer a sodales elit, eu pulvinar leo. Nunc nec
+                        aliquam nisi, a mollis neque. Ut vel felis quis tellus hendrerit placerat. Vivamus
+                        vel nisl non magna feugiat dignissim sed ut nibh. Nulla elementum, est a pretium
+                        hendrerit, arcu risus luctus augue, mattis aliquet orci ligula eget massa. Sed ut
+                        ultricies felis.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END MODAL CONFIG PORTLET-->
+</div>
+<!--END TOPBAR-->
+<div id="wrapper">
+    <!--BEGIN SIDEBAR MENU-->
+    <nav id="sidebar" role="navigation" data-step="2"
+         data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;"
+         data-position="right" class="navbar-default navbar-static-side">
+        <div class="sidebar-collapse menu-scroll">
+            <ul id="side-menu" class="nav">
+
+                <div class="clearfix"></div>
+                <li class="active">
+                    <a href="dashboard.html">
+                        <i class="fa fa-tachometer fa-fw">
+                            <div class="icon-bg bg-orange"></div>
+                        </i>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
+
+                <!-- Categorie -->
+                <li>
+                    <a href="{{ path("admin_categories_index") }}">
+                        <i class="fa fa-th-list">
+                            <div class="icon-bg bg-orange"></div>
+                        </i>
+                        <span class="menu-title">Categorie</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ path("admin_users_index") }}">
+                        <i class="fa fa-users">
+                            <div class="icon-bg bg-orange"></div>
+                        </i>
+                        <span class="menu-title">Membres</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ path("admin_annonce_index") }}">
+                        <i class="fa fa-database fa-fw">
+                            <div class="icon-bg bg-orange"></div>
+                        </i>
+                        <span class="menu-title">List Annonce</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa fa-envelope">
+                            <div class="icon-bg bg-orange"></div>
+                        </i>
+                        <span class="menu-title">Mes Messages</span>
+                    </a>
+                </li>
+
+                <li><a href="Charts.html"><i class="fa fa-bar-chart-o fa-fw">
+                            <div class="icon-bg bg-orange"></div>
+                        </i><span class="menu-title">Charts</span></a>
+
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--END SIDEBAR MENU-->
+
+    <!--BEGIN PAGE WRAPPER-->
+    <div id="page-wrapper">
+        <!--BEGIN TITLE & BREADCRUMB PAGE-->
+        <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+            <div class="page-header pull-left">
+                <div class="page-title">
+                    Dashboard
+                </div>
+            </div>
+            <ol class="breadcrumb page-breadcrumb pull-right">
+                <li><i class="fa fa-home"></i>&nbsp;<a href="dashboard.html">Home</a>&nbsp;&nbsp;<i
+                            class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                <li class="hidden"><a href="#">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+                </li>
+                <li class="active">Dashboard</li>
+            </ol>
+            <div class="clearfix">
+            </div>
+        </div>
+        <!--END TITLE & BREADCRUMB PAGE-->
+        <!--BEGIN CONTENT-->
+        <div class="page-content">
+            <div id="tab-general">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
+        <!--END CONTENT-->
+        <!--BEGIN FOOTER-->
+        <div id="footer">
+            <div class="copyright">
+                <a href="http://themifycloud.com">Mednaceur Company 2016 © tous droit reservé</a></div>
+        </div>
+        <!--END FOOTER-->
+    </div>
+    <!--END PAGE WRAPPER-->
+</div>
+{% block javascript %}
+    <script src="{{ asset("test/JS/jquery-1.10.2.min.js") }}"></script>
+    <script src="{{ asset('test/JS/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('test/JS/jquery-migrate-1.2.1.min.js') }}"></script>
+    <script src="{{ asset('test/JS/jquery-ui.js') }}"></script>
+    <script src="{{ asset('test/JS/bootstrap-hover-dropdown.js') }}"></script>
+    <script src="{{ asset('test/JS/html5shiv.js') }}"></script>
+    <script src="{{ asset('test/JS/respond.min.js') }}"></script>
+    <script src="{{ asset('test/JS/jquery.metisMenu.js') }}"></script>
+    <script src="{{ asset('test/JS/jquery.slimscroll.js') }}"></script>
+    <script src="{{ asset('test/JS/jquery.cookie.js') }}"></script>
+    <script src="{{ asset('test/JS/icheck.min.js') }}"></script>
+    <script src="{{ asset('test/JS/jquery.news-ticker.js') }}"></script>
+    <script src="{{ asset('test/JS/jquery.menu.js') }}"></script>
+    <script src="{{ asset('test/JS/pace.min.js') }}"></script>
+    <script src="{{ asset('test/JS/holder.js') }}"></script>
+    <script src="{{ asset('test/JS/responsive-tabs.js') }}"></script>
+
+    <script src="{{ asset('test/JS/jquery.flot.js') }}"></script>
+    <script src="{{ asset('test/JS/jquery.flot.categories.js') }}"></script>
+    <script src="{{ asset('test/JS/jquery.flot.pie.js') }}"></script>
+    <script src="{{ asset('test/JS/jquery.flot.tooltip.js') }}"></script>
+    <script src="{{ asset('test/JS/jquery.flot.resize.js') }}"></script>
+    <script src="{{ asset('test/JS/jquery.flot.fillbetween.js') }}"></script>
+    <script src="{{ asset('test/JS/jquery.flot.stack.js') }}"></script>
+    <script src="{{ asset('test/JS/jquery.flot.spline.js') }}"></script>
+    <script src="{{ asset('test/JS/zabuto_calendar.min.js') }}"></script>
+    <script src="{{ asset('test/JS/index.js') }}"></script>
+    <script src="{{ asset('test/JS/highchart.js') }}"></script>
+    <script src="{{ asset('test/JS/data.js') }}"></script>
+    <script src="{{ asset('test/JS/drilldown.js') }}"></script>
+    <script src="{{ asset('test/JS/exporting.js') }}"></script>
+    <script src="{{ asset('test/JS/highcharts-more.js') }}"></script>
+    <script src="{{ asset('test/JS/charts-highchart-pie.js') }}"></script>
+    <script src="{{ asset('test/JS/charts-highchart-more.js') }}"></script>
+    <script src="{{ asset('test/JS/main.js') }}"></script>
+    <script src="{{ asset('test/JS/jquery.news-ticker.js') }}"></script>
+{% endblock %}
+</body>
+</html>

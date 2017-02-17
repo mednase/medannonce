@@ -1,0 +1,27 @@
+<ul class="dropdown-menu messages">
+    <li class="dropdown-menu-title">
+        <span>Vous Avez {{ messages|length }} Nouveau Messages</span>
+    </li>
+    <li>
+        {% for message in messages %}
+        <a href="{{ path('messages') }}">
+            <span class="avatar"><img src="{{ asset(message.source.profile.photo.path) }}" alt="Avatar"></span>
+										<span class="header">
+											<span class="from">
+										    	{{ message.source.username }}
+										     </span>
+											<span class="time">
+										    	{{ message.dateEnvoi|date("d-m-y") }}
+										    </span>
+										</span>
+                                        <span class="message">
+                                            {{ message.titre }}
+                                        </span>
+        </a>
+    </li>
+        {% endfor %}
+    <li>
+        <a href="{{ path('messages') }}" class="dropdown-menu-sub-footer">Voir Tous Les Messages</a>
+    </li>
+
+</ul>

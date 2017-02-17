@@ -1,0 +1,70 @@
+{% set intro = "::base.html.twig" %}
+
+{% if app.user %}
+    {% if "ROLE_SUPER_ADMIN" in app.user.roles %}
+        {% set intro = "AdminBase.html.twig" %}
+    {% endif %}
+{% endif %}
+{% extends "::base.html.twig" %}
+{% block body %}
+            <div>
+            {% if app.request.hasPreviousSession %}
+                {% for type, messages in app.session.flashbag.all() %}
+                    {% for message in messages %}
+                        <div class="flash-{{ type }}">
+                            <div class="alert alert-danger" style="position: absolute"> {{ message }}</div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+            {% block fos_user_content %}
+
+
+
+            {% endblock fos_user_content %}
+        </div>
+
+{% endblock %}
+{% block javascripts %}
+    {% block js %}
+        <script>
+
+        $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+        var index = $(this).index();
+        $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+        $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+        });
+
+        var dlFav= $(".deleteFav");
+        dlFav.on("mouseover",function () {
+            $(this).css("color","red");
+        });
+        dlFav.on("mouseout",function(){
+            $(this).css("color","");
+        });
+        dlFav.click(function(){
+            var i=$(this).data("info");
+            var parent=$(".Fav"+i);
+            $.ajax({
+                type: "GET",
+                dataType: 'html',
+                data: {'num': i},
+                url: "{{ url('remove_Fav') }}",
+                success: function() {
+
+                        parent.fadeTo("slow", 0.01, function(){ //fade
+                            $(this).slideUp("slow", function() { //slide up
+                                $(this).remove(); //then remove from the DOM
+                            });
+                        });
+                }
+
+
+            });
+        });
+        </script>
+    {% endblock %}
+{% endblock %}

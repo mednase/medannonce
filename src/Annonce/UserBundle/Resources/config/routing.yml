@@ -1,0 +1,14 @@
+med_service_user_homepage:
+    path:     /
+    defaults: { _controller: AnnonceUserBundle:Default:index }
+
+envoiMessage:
+    path: /sendM
+    defaults: { _controller: AnnonceUserBundle:User:envoiMessage}
+
+notifyMessage:
+    path: /NotifyMessage
+    defaults: { _controller: AnnonceUserBundle:User:NotifyMessage}
+deleteMessage:
+    path: /deleteMessage
+    defaults: { _controller: AnnonceUserBundle:User:deleteMessage}

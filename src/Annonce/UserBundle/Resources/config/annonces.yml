@@ -1,0 +1,4 @@
+services:
+#    med_service_user.example:
+#        class: Annonce\UserBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

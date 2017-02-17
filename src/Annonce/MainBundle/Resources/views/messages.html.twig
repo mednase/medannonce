@@ -1,0 +1,147 @@
+
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<div class="contenaire-2 row">
+
+    <div class="col-md-5">
+        <h1 style="color: darkgray">Liste Messages</h1>
+        <ul class="messagesList">
+
+            {% for message in messages %}
+            <li class="row" id="{{ message.id }}">
+                <span class="from col-md-3"><img class="img-circle message-avatar" src="{{ asset(message.source.profile.photo.path)}}"><div class="NomMessageFrom">{{ message.source.username }}</div> </span>
+                    <span class="title col-md-6"> {{ message.Titre }}</span>
+                <span class="date col-md-3">
+                     {% if date(message.dateEnvoi) > date('') %}
+                         Aujourdhui, <b>{{ message.dateEnvoi|date('H:i') }}</b>
+                     {% elseif date(message.dateEnvoi) > date('-1days') %}
+                         Hier, <b>{{ message.dateEnvoi|date('H:i') }}</b>
+                     {% else %}
+                         {{ message.dateEnvoi|date('d-M') }},<b>{{ message.dateEnvoi|date('H:i') }}</b>
+                     {% endif %}
+                </span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% for message in messages %}
+    <div class="col-md-6 bhoechie-tab-content row hidden message{{ message.id }}" style="margin-top: 5%;margin-left: 2%;padding-top: inherit;margin-bottom: 3%">
+        <div class="message dark">
+
+            <div class="header row">
+                <h1 class="col-lg-12 titreM">{{ message.titre }}</h1>
+                <div class="col-md-6 text-left"><i class="fa fa-user"></i> <b>{{ message.source.username }}</b> / {{ message.source.email }}</div>
+                <div class="col-md-6 text-right"><i class="halflings-icon time">
+                        {% if date(message.dateEnvoi) > date('') %}
+                            Aujourdhui, <b>{{ message.dateEnvoi|date('H:i') }}</b>
+                        {% elseif date(message.dateEnvoi) > date('-1days') %}
+                            Hier, <b>{{ message.dateEnvoi|date('H:i') }}</b>
+                        {% else %}
+                            {{ message.dateEnvoi|date('d-M') }},<b>{{ message.dateEnvoi|date('H:i') }}</b>
+                        {% endif %}
+                        <button class="btn btn-sm btn-danger SupM" id="{{ message.id }}"><span class="fa fa-trash"></span>  Supprimer</button></i></div>
+
+                <div class="menu"></div>
+
+            </div>
+            <div class="Source" id="{{ message.source.id }}"></div>
+            <div class="content">
+                <p>
+                    {{ message.contenu }}
+                </p>
+            </div>
+
+            <form class="replyForm col-md-12"method="post" action="">
+
+                <fieldset>
+                    <textarea tabindex="3" class="form-control input-lg col-md-11" id="message" name="body" rows="4" placeholder="Clicker pour repondre" style="resize: vertical"></textarea>
+
+                    <div class="actions">
+
+                        <button  tabindex="3" type="submit" class="btn btn-success envoiM" id="{{ message.id }}">Envoyer message</button>
+
+                    </div>
+
+                </fieldset>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+    {% if messages|length == 0 %}
+    <div class="col-md-12">
+       <h1 class="text-info"> Vous n'avez aucun nouveau messages ! </h1>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+{% block javascripts %}
+<script>
+    $('.messagesList li').click(function(){
+
+        var id=$(this).attr('id');
+        var messagetab=$(".message"+id);
+        messagetab.removeClass("hidden");
+    });
+    $('.envoiM').click(function () {
+        var idM = $(this).attr('id');
+        var idS = $(".message" + idM).find('.Source').attr('id');
+        var titre = $(".message" + idM).find('.titreM').val();
+        var message = $(".message" + idM).find('#message').val();
+        $.ajax({
+            type: "GET",
+            data: {'id': idS, 'contenu': message, 'titre': titre},
+            url: "{{ url('envoiMessage') }}",
+            beforeSend: function () {
+                notify = $.notify('<strong>Envoi Message</strong> Envoi encours ne fermer pas cette page...', {
+                    allow_dismiss: false,
+                    showProgressbar: true
+                });
+            },
+            success: function (reponse) {
+                notify.update({
+                    'type': 'success',
+                    'message': '<strong>Success</strong> Votre Message a éte envoyer!',
+                    'progress': 100
+                });
+            },
+            fail: function () {
+                notify.update({
+                    'type': 'error',
+                    'message': '<strong>Erreur </strong> Echec d\'envoi !',
+                    'progress': 100
+                });
+                $('#message-text').val(message);
+            }
+        });
+    });
+        $('.SupM').click(function () {
+            var id=$(this).attr('id');
+            $.ajax({
+                type: "GET",
+                data: {'id': id},
+                url: "{{ url('deleteMessage') }}",
+                success: function(reponse) {
+                    $('#'+id).fadeTo("slow", 0.01, function(){ //fade
+                        $(this).slideUp("slow", function() { //slide up
+                            $(this).remove(); //then remove from the DOM
+                        });
+                    });
+                    $('.message'+id).fadeTo("slow", 0.01, function(){ //fade
+                        $(this).slideUp("slow", function() { //slide up
+                            $(this).remove(); //then remove from the DOM
+                        });
+                    });
+                }
+            });
+        });
+
+
+
+</script>
+{%endblock%}

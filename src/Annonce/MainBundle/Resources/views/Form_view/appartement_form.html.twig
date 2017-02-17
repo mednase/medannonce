@@ -1,0 +1,27 @@
+
+{{ form_start(formA) }}
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Nombre Chambre :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formA.Chambre,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Surface :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formA.Surface,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Parking :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formA.Parking,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+{{ form_end(formA) }}

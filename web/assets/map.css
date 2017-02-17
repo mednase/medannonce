@@ -1,0 +1,33 @@
+.map{
+    width: 300px;
+    height: 450px;
+    background: url(Carte_tunisie.png) left top no-repeat;
+	position:relative;
+}
+.overlay{
+	width: 300px;
+    height: 450px;
+    background: url(Carte_tunisie.png) 300px top no-repeat;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:1;
+ }
+.map img{
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:2;
+}
+.toolip{
+position: fixed;
+    border-radius:5px ;
+    color: #39a9a0;
+    padding: 0 10px;
+    background: blanchedalmond;
+    display: inline;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    text-align: center;
+}

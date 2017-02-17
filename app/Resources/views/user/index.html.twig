@@ -1,0 +1,49 @@
+{% extends '::AdminBase.html.twig' %}
+
+{% block body %}
+    <div class="panel panel-violet">
+        <div class="panel-heading">Liste Des Utilisateurs</div>
+        <div class="panel-body">
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom utilisateur</th>
+                    <th>Email</th>
+                    <th>Date Inscription</th>
+                    <th>Dernier Visite</th>
+                    <th>Status</th>
+                    <th>Option</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                <tr>
+                    <td><a href="{{ path('admin_users_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>user.join</td>
+                    <td>{{ user.lastLogin|date }}</td>
+                    <td><span class="label label-sm label-success">Approved</span></td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('admin_users_show', { 'id': user.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('admin_users_edit', { 'id': user.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <ul>
+        <li>
+            <a href="{{ path('admin_users_new') }}">Cree Nouveau Utilisateur</a>
+        </li>
+    </ul>
+{% endblock %}

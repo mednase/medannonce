@@ -1,0 +1,36 @@
+
+{{ form_start(formC) }}
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Marque :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formC.Marque,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Modéle :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formC.Modele,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Anneé :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formC.Annee,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Kilometrage :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formC.Kilometrage,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+{{ form_end(formC) }}
+

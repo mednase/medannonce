@@ -1,0 +1,52 @@
+
+{{ form_start(formV) }}
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Marque :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formV.Marque,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Modéle :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formV.Modele,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Anneé :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formV.Annee,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Kilometrage :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formV.Kilometrage,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Energie :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formV.Energie,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group form-inline col-lg-12">
+    <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+        Boitue Vitesse :
+    </label>
+    <div class="col-md-7 text-left">
+        {{ form_row(formV.BoitueVitesse,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+{{ form_end(formV) }}
+

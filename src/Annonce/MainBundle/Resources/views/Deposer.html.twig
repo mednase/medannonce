@@ -1,0 +1,154 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div class="container jumbotron ">
+<div class="row">
+    <br>
+    <div class="text-left col-lg-5" style="background-color: orange;font-size: 20px;font-family: 'Open sans', Helvetica, Arial;color: #f8f8f8;padding: 8px">Deposer Votre Annonce De façon Gratuit !</div>
+    <br>
+    <br><br>
+    {{ form_start(form, {'method': 'post', 'action': path('med_annonce_depose')}) }}
+    <div class="form-group form-inline col-lg-12">
+        <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+            Categorie :
+        </label>
+        <div class="col-md-7 text-left">
+            {{ form_row(form.categorie,{'attr':{'class':'form-control'}}) }}
+        </div>
+    </div>
+    <div id="form-container">
+
+    </div>
+    <div class="form-group form-inline col-lg-12">
+        <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+            Titre d'Annonce:
+        </label>
+        <div class="col-md-7 text-left">
+            {{ form_row(form.titre,{'attr':{'class':'form-control'}}) }}
+        </div>
+    </div>
+
+        <div class="form-group form-inline col-lg-12">
+            <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+                Description :
+            </label>
+            <div class="col-md-7 text-left">
+            {{ form_widget(form.description,{'attr':{'class':'form-control','rows':'5','cols':'50'}}) }}
+            </div>
+        </div>
+        <div class="form-group form-inline col-lg-12">
+            <label class="col-lg-5  col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+                Gouvernorat :
+            </label>
+            <div class="col-md-7 text-left">
+            {{ form_widget(form.gouvernorat,{'attr':{'class':'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group form-inline col-lg-12">
+            <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+                Adresse :
+            </label>
+            <div class="col-md-7 text-left">
+            {{ form_widget(form.adresse,{'attr':{'class':'form-control'}}) }}
+            </div>
+        </div>
+
+
+        <div class="form-group text-left form-inline col-lg-12">
+            <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+                Prix :
+            </label>
+            <div class="input-group input-lg m1 text-left">
+            {{ form_widget(form.prix,{'attr':{'class':'form-control'}}) }}
+                <span class="input-group-addon" ><i class="fa fa-dollar"></i></span>
+            </div>
+        </div>
+
+        <div class="form-group form-inline col-lg-12">
+            <label class="col-lg-5 col-sm-5 text-right" style="color: #00bf00;font-size: 18px">
+                Images :
+            </label>
+            Une annonce avec des images  est 7 fois plus consultée qu'une annonce sans images. ( 3 images )
+        </div>
+    <div class="col-xs-12">
+        <div class=" box-images">
+            {% for image in form.images %}
+            <div class="image_box col-md-4 col-xs-4">
+                <div class="title">
+                    IMAGE {{ loop.index }}
+                </div>
+                <div class="fa fa-camera fa-5x " id="faimg{{ loop.index }}"></div>
+                <img src="" id="Pimg{{ loop.index }}" width="100" height="100">
+               <div class="fileUpload btn btn-primary">
+                 <span>Choisir Image</span>
+                        {{ form_widget(image,{'attr':{'class':'upload'},'id':'img'~loop.index }) }}
+               </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    <input type="submit" class="btn btn-success">
+    {{ form_end(form) }}
+</div>
+</div>
+{% endblock %}
+{% block javascripts %}
+<script>
+    $("#Pimg1").hide();
+    $("#Pimg2").hide();
+    $("#Pimg3").hide();
+
+$('#annonces_categorie').on('change',function(event){
+        event.preventDefault();
+
+    var cat=$(this).find('option:selected').text();
+    $.ajax({
+                type: "GET",
+                dataType: 'html',
+                data: {'type': cat},
+                url: "{{ url('getForm') }}"
+            })
+            .done(function(response){
+                $('#form-container').html(response); //Change the html of the div with the id = "your_div"
+            })
+            .fail(function(jqXHR, textStatus, errorThrown){
+                $('#form-container').html("");
+                location.reload();
+            });
+    });
+$(".upload").on('change', function () {
+    //Get count of selected files
+    var countFiles = $(this)[0].files.length;
+    var imgPath = $(this)[0].value;
+    var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+
+    var bod= $(this).parent().parent().attr("id");
+    var image_prev = $('#P'+bod);
+    var image_default=$('#fa'+bod);
+
+    image_prev.empty();
+    if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+        if (typeof (FileReader) != "undefined") {
+            //loop for each file selected for uploaded.
+            for (var i = 0; i < countFiles; i++) {
+
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                   image_prev.attr("src",e.target.result);
+                }
+                image_prev.show();
+                image_default.hide();
+                reader.readAsDataURL($(this)[0].files[i]);
+            }
+
+        } else {
+            alert("This browser does not support FileReader.");
+        }
+    } else {
+        alert("Pls select only images");
+    }
+});
+</script>
+{% endblock %}

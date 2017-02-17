@@ -1,0 +1,16 @@
+admin:
+    path:    /
+    defaults: { _controller: AnnonceMainBundle:Admin:index}
+
+admin_categories:
+    resource: "@AnnonceMainBundle/Resources/config/routing/categories.yml"
+    prefix:   /categories
+
+
+admin_services:
+    resource: "@AnnonceMainBundle/Resources/config/routing/annonce.yml"
+    prefix:   /Annonce
+
+admin_users:
+    resource: "@AnnonceUserBundle/Resources/config/routing/user.yml"
+    prefix:   /users

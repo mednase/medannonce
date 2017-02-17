@@ -1,0 +1,17 @@
+main:
+    resource: "@AnnonceMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+admin:
+    resource: "@AnnonceMainBundle/Resources/config/AdminRouting.yml"
+    prefix:  /admin
+
+annonce_user:
+    resource: "@AnnonceUserBundle/Resources/config/routing.yml"
+    prefix:   /user
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

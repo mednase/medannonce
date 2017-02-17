@@ -1,0 +1,303 @@
+<div class="row">
+    <div class="col-lg-11 bhoechie-tab-container" style="margin-left: 4%;">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+            <div class="list-group">
+                <a href="#" class="list-group-item active text-center">
+                    <h4 class="glyphicon glyphicon-user"></h4><br/>Profile
+                </a>
+                <a href="#" class="list-group-item text-center">
+                    <h4 class="glyphicon glyphicon-edit"></h4><br/>Modifier Information
+                </a>
+                <a href="" class="list-group-item text-center">
+                    <h4 class="glyphicon glyphicon-bullhorn"></h4><br/>Mes Annonces
+                </a>
+                <a href="#" class="list-group-item text-center">
+                    <h4 class="glyphicon glyphicon-heart"></h4><br/>Mes Favoris
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-9 bhoechie-tab">
+            <!-- Profile section -->
+            <div class="bhoechie-tab-content active">
+                <div class="row mtl center-block">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <div class="text-center mbl"><img src="{{ asset( user.profile.photo.path ) }}" alt="" class="img-responsive"/></div>
+                            <div class="fileUpload btn btn-primary"><span> Upload </span><input type="file" class="upload" value="upload"></div>
+                        </div>
+                        <table class="table table-striped table-hover">
+                            <tbody>
+                            <tr>
+                                <td>Nom Utilisateur</td>
+                                <td>{{ user.username }}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td>{{ user.profile.adresse }},{{ user.profile.codePostale }}</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td><span class="label label-success">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>Note Utilisateur</td>
+                                <td><i class="fa fa-star text-yellow fa-fw"></i><i class="fa fa-star text-yellow fa-fw"></i><i class="fa fa-star text-yellow fa-fw"></i><i class="fa fa-star text-yellow fa-fw"></i><i class="fa fa-star text-yellow fa-fw"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Membre depuis</td>
+                                <td> {{ user.joindAt|date('d-M-Y') }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Modifier section -->
+            <div class="bhoechie-tab-content">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">Parametre du Compte</a></li>
+                    <li><a data-toggle="tab" href="#menu1">Configurer Profile</a></li>
+                    <li><a data-toggle="tab" href="#menu2">Configurer Contact</a></li>
+                </ul>
+                <div class="tab-content" >
+                    <div id="home" class="tab-pane fade in active">
+
+                        <div class="form-group">
+                            <div class="col-sm-9 controls">
+                                <div class="row">
+                                    <div class="col-xs-9"><input type="email" placeholder="Email@domaine.com" class="form-control input-lg"/></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9 controls">
+                                <div class="row">
+                                    <div class="col-xs-9"><input type="text" placeholder="Nom utilisateur" class="form-control input-lg"/></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9 controls">
+                                <div class="row">
+                                    <div class="col-xs-9"><input type="password" placeholder="Mot de passe" class="form-control input-lg"/></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9 controls">
+                                <div class="row">
+                                    <div class="col-xs-9"><input type="password" placeholder="Confirmer mot de passe" class="form-control  input-lg"/></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+
+                        <div class="form-group">
+                            <div class="col-sm-9 controls">
+                                <div class="row">
+                                    <div class="col-xs-9"><input type="text" placeholder="Prenom" class="form-control input-lg"/></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9 controls">
+                                <div class="row">
+                                    <div class="col-xs-9"><input type="text" placeholder="Nom" class="form-control input-lg"/></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9 controls">
+                                <div class="row">
+                                    <div class="col-xs-9"><input  type="date"  placeholder="Date Naissance" class="form-control datepicker"/></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-9 controls">
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                        <input placeholder="Adresse" class="form-control"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="menu2" class="tab-pane fade" style="padding: 20px">
+                        <div class="form-group">
+                            <div class="col-sm-9 controls">
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                        <input type="text" placeholder="Numero Telephone" class="form-control input-lg"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 20px;">
+
+                            <div class="col-sm-9 controls">
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                        <input type="text" placeholder="Skype" class="form-control input-lg"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9 controls">
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                        <input type="text" placeholder="facebook" class="form-control input-lg" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <div class="col-sm-9 controls">
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                        <input type="text" placeholder="twitter" class="form-control input-lg"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                </div>
+
+            <!-- Mes Annonce -->
+            <div class="bhoechie-tab-content">
+                <div class="page-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div id="grid-layout-table-1" class="box jplist">
+                                        <div class="box text-shadow">
+                                            {% for annonce in annonces %}
+
+                                                <div class="thumb row itemAnnonce"  data-href='{{ path('View_annonce',{id:annonce.id}) }}'>
+                                                    <div class="media col-md-3 ">
+                                                        <figure class="pull-left">
+                                                            {%  if annonce.images|length <1%}
+                                                                {% set pathimg= asset('images/default-img-annonce.png') %}
+                                                            {% else %}
+                                                                {% set pathimg= asset(annonce.images.get(0).path) %}
+                                                            {% endif %}
+                                                            <img class=" "  src="{{ pathimg }}"  width="200px" height="150px">
+                                                        </figure>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <h4 class="titre text-left col-md-8"> {{ annonce.titre }} </h4>
+                                                        <time style="font-size: 18px;" class="comment-date col-md-4" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i>
+                                                            {% if date(annonce.dateAjout) > date('') %}
+                                                                Aujourdhui {{ annonce.dateAjout|date('H:i') }}
+                                                            {% elseif date(annonce.dateAjout) > date('-1days') %}
+                                                                Hier {{ annonce.dateAjout|date('H:i') }}
+                                                            {% else %}
+                                                                {{ annonce.dateAjout|date('d-M:H:i') }}
+                                                            {% endif %}
+                                                        </time>
+                                                        <p class=" text-left col-md-10" style="margin-top: 1%">
+                                                            {{ annonce.description[:100]~' ...' }}
+                                                        </p>
+                                                        <p class="col-md-2" style="color: orangered;font-size: 22px;font-weight: bold">
+                                                            {{ annonce.prix }} $
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                            {% if annonces|length ==0 %}
+                                                <h1 class="text-warning">Vous avez deposer 0 Annonce !</h1>
+                                            {% endif %}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favoris -->
+            <div class="bhoechie-tab-content">
+                <div class="page-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div id="grid-layout-table-1 col-md-9" class="box jplist">
+                                        <div class="box text-shadow">
+                                                        {% for favori in favoris %}
+                                                            <div class="Fav{{ favori.id }}">
+                                                            <div class="thumb row itemAnnonce col-md-11"  data-href='{{ path('View_annonce',{id:favori.annonce.id}) }}' >
+                                                                <div class="media col-md-3 ">
+                                                                    <figure class="pull-left">
+                                                                        {%  if favori.annonce.images|length <1%}
+                                                                            {% set pathimg= asset('images/default-img-annonce.png') %}
+                                                                        {% else %}
+                                                                            {% set pathimg= asset(favori.annonce.images.get(0).path) %}
+                                                                        {% endif %}
+                                                                        <img class=" "  src="{{ pathimg }}"  width="200px" height="150px">
+                                                                    </figure>
+                                                                </div>
+                                                                <div class="col-md-9">
+                                                                    <h4 class="titre text-left col-md-8"> {{ favori.annonce.titre }} </h4>
+                                                                    <time style="font-size: 18px;" class="comment-date col-md-4" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i>
+                                                                        {% if date(favori.annonce.dateAjout) > date('') %}
+                                                                            Aujourdhui {{ favori.annonce.dateAjout|date('H:i') }}
+                                                                        {% elseif date(favori.annonce.dateAjout) > date('-1days') %}
+                                                                            Hier {{ favori.annonce.dateAjout|date('H:i') }}
+                                                                        {% else %}
+                                                                            {{ favori.annonce.dateAjout|date('d-M:H:i') }}
+                                                                        {% endif %}
+                                                                    </time>
+                                                                    <p class=" text-left col-md-10" style="margin-top: 1%">
+                                                                        {{ favori.annonce.description[:100]~' ...' }}
+                                                                    </p>
+                                                                    <p class="col-md-2" style="color: orangered;font-size: 22px;font-weight: bold">
+                                                                        {{ favori.annonce.prix }} $
+                                                                    </p>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="text-center text-danger col-md-1 deleteFav" style="top:80px;left:10px;" data-info="{{ favori.id }}">
+                                                                <i class="fa fa-trash fa-3x " style="text-decoration: none;cursor: pointer"></i>
+                                                            </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                        {% if favoris|length ==0 %}
+                                                            <h1 class="text-warning">Votre Liste De Favoris Est Vide</h1>
+                                                        {% endif %}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+                </div>
+
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

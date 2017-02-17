@@ -1,0 +1,48 @@
+accueil:
+    path:     /
+    defaults: { _controller: AnnonceMainBundle:Default:index }
+
+get_zone:
+    path:     /accueil/{zone}
+    defaults: { _controller: AnnonceMainBundle:Default:accueil}
+    methods:  GET
+
+get_categorie:
+    path:     /accueil/{zone}/{categorie}
+    defaults: { _controller: AnnonceMainBundle:Default:categorie }
+
+
+categorie:
+    path:     /categorie/{type}
+    defaults: { _controller: AnnonceMainBundle:Categories:categorie }
+
+med_annonce_depose:
+    path:    /Deposer
+    defaults: { _controller: AnnonceMainBundle:Default:deposerAnnonce}
+
+Recherche:
+    path:   /Recherche
+    defaults: { _controller: AnnonceMainBundle:Default:recherche}
+
+View_annonce:
+    path:   /Annonce/{id}
+    defaults: { _controller: AnnonceMainBundle:Annonce:Annonce}
+add_Fav:
+    path:   /Fav
+    defaults: { _controller: AnnonceMainBundle:Annonce:addFavoris}
+
+get_Fav:
+    path:   /Fav/{id}
+    defaults: { _controller: AnnonceMainBundle:Annonce:getFavoris}
+
+remove_Fav:
+    path:  /RemFav
+    defaults: { _controller: AnnonceMainBundle:Annonce:removeFav}
+
+getForm:
+    path: /getForm
+    defaults: { _controller: AnnonceMainBundle:Annonce:getObjectForm }
+
+messages:
+    path: /messages
+    defaults: { _controller: AnnonceMainBundle:Default:message}

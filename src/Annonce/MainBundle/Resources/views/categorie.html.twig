@@ -1,0 +1,13 @@
+{% if( type==1 ) %}
+    {% for categorie in categories %}
+        <li><a href="{{ path('get_categorie',{'zone':'Tunisie','categorie':categorie.nom}) }}" >
+            {{ categorie.nom }}
+        </a></li>
+    {% endfor %}
+{% else %}
+    {% for categorie in categories %}
+            <option value="{{ categorie.id }}"><a href="{{ path('get_categorie',{'zone':'Tunisie','categorie':categorie.nom}) }}">{{ categorie.nom }}</a></option>
+    {% endfor %}
+
+
+{% endif %}

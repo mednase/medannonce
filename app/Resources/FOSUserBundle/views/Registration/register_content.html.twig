@@ -1,0 +1,136 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="container block">
+
+    <div class="wizard" style="margin-top: 10%">
+        <span class="fa fa-pencil fa-3x text-success"> <strong>  Inscription</strong></span> <small class="text-info" style="font-family: 'Open Sans', 'sans-serif';font-weight: bold"> C’est gratuit et ça le restera toujours</small>
+        <hr class="colorgraph">
+            <!--      Wizard container        -->
+            <div class="wizard-card">
+                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                    <div id="Mytab">
+                        <div class="center-block">
+                            <ul class="nav nav-wizard " id="tabname">
+                                <li class="f active col-md-3 col-sm-3 "><a  href="#compte" data-toggle="tab"> <span class="badge current">1</span> Compte </a></li>
+                                <li class="f col-md-3 col-sm-3"><a href="#Profile" data-toggle="tab" ><span class="badge">2</span> Profile </a></li>
+                                <li class="f col-md-3 col-sm-3"><a  href="#Adresse" data-toggle="tab" > <span class="badge">3</span> Adresse </a></li>
+                                <li class="f col-md-3 col-sm-3"><a  href="#confirm" data-toggle="tab"><span class="badge">4</span> Confirmation</a></li>
+                            </ul>
+                        </div>
+                        <div class="tab-content col-md-12" style="margin-top: 10px">
+                            <div class="tab-pane active block col-md-12" id="compte">
+                                <div class=" center-block form-group col-md-10">
+                                    <div class="input-group input-lg m1">
+                                        {{ form_errors(form.username) }}
+                                        {{ form_row(form.username) }}
+                                        <span class="input-group-addon" ><i class="fa fa-user"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group  center-block col-md-10">
+                                    <div class="input-group input-lg ">
+                                        {{ form_row(form.email) }}
+                                        <span class="input-group-addon"> <i class=" fa fa-envelope"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-10">
+                                    <div class="input-group input-lg">
+                                        {{ form_row(form.plainPassword) }}
+                                        <span class="input-group-addon" ><i class=" fa fa-lock"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane col-md-12" id="Profile" style="margin: 10px" >
+                                <div class="image-container picture-container col-md-4">
+
+                                    <div class="picture">
+                                        <img src="{{ asset("images/default-avatar.png") }}" class="picture-src" id="wizardPicturePreview" title=""/>
+                                        {{ form_widget(form.profile.photo,{'id':'wizard-picture'}) }}
+                                    </div>
+                                    <h5 class="text-photo text-info">Photo Profile</h5>
+                                </div>
+                                <div class="form-group center-block col-md-8">
+                                    <div class="input-group input-lg m1">
+                                        {{ form_row(form.profile.nom) }}
+                                        <span class="input-group-addon"> <i class=" fa fa-smile-o"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group center-block col-md-8">
+                                    <div class="input-group input-lg m1">
+                                        {{ form_row(form.profile.prenom) }}
+                                        <span class="input-group-addon"> <i class=" fa fa-pencil"></i></span>
+                                    </div>
+                                </div>
+                                <div class=" center-block form-group col-md-8">
+                                    <div class="input-group-lg  input-lg m1 ">
+                                        {{ form_row(form.profile.genre) }}
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-10">
+                                    <div class="input-group input-lg m1 date">
+                                    {{ form_row(form.profile.date_naissance,{'data-provide':'datepicker'}) }}
+                                        <span class="input-group-addon" id="start-date"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                                <div class="form-group center-block col-md-10">
+                                    <div class="input-group input-lg m1">
+                                        {{ form_row(form.profile.telephone) }}
+                                        <span class="input-group-addon"> <i class=" fa fa-phone"></i></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane" id="Adresse">
+                                <div class="form-group center-block col-md-10">
+                                    <div class="input-group input-lg m1">
+                                        {{ form_row(form.profile.adresse) }}
+                                        <span class="input-group-addon"> <i class="fa fa-street-view"></i></span>
+                                    </div>
+                                </div> <div class="form-group center-block col-md-10">
+                                    <div class="input-group input-lg m1">
+                                        {{ form_row(form.profile.gouvernorat) }}
+                                        <span class="input-group-addon"> <i class="fa fa-globe"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group center-block col-md-10">
+                                    <div class="input-group input-lg ">
+                                        {{ form_row(form.profile.codePostale) }}
+                                        <span class="input-group-addon"> <i class=" fa fa-codepen"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group center-block col-md-10">
+                                    <div class="input-group input-lg m1">
+                                        {{ form_row(form.profile.facebok) }}
+                                        <span class="input-group-addon"> <i class=" fa fa-facebook"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group center-block col-md-10">
+                                    <div class="input-group input-lg m1">
+                                        {{ form_row(form.profile.twitter) }}
+                                        <span class="input-group-addon"> <i class=" fa fa-twitter"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group center-block col-md-10">
+                                    <div class="input-group input-lg m1">
+                                        {{ form_row(form.profile.skype) }}
+                                        <span class="input-group-addon"> <i class=" fa fa-skype"></i></span>
+                                    </div>
+                                </div>                            </div>
+                            <div class="tab-pane" id="confirm">
+                            </div>
+                        </div>
+                    </div>
+                <div class="wizard-footer">
+                    <div class="pull-right">
+                        <input id="suivant" type='button' class='btn  btn-warning ' name='next' value='Suivant' />
+                        <input id="term" type='submit' class='btn  btn-fill btn-warning ' name='finish' value='Terminer' />
+                    </div>
+                    {{ form_end(form) }}
+
+                    <div class="pull-left">
+                        <input  id="precedent" type='button' class='btn btn-fill btn-danger' name='previous' value='Précedent' />
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div> <!-- wizard container -->
+    </div><!-- end row -->
+</div> <!--  big container -->
